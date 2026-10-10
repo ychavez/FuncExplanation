@@ -1,4 +1,4 @@
-﻿namespace FuncExplanation
+namespace FuncExplanation
 {
     internal class Program
     {
@@ -19,35 +19,25 @@
 
 
 
-        static int ContarNombres(string letra, Func<string, bool> filtro)
+        static int ContarNombres(Func<string, bool> filtro)
         {
-            nombres = nombres.Where(filtro).ToList();
+            var filtrados = nombres.Where(filtro).ToList();
 
-            foreach (var nombre in nombres)
+            foreach (var nombre in filtrados)
             {
                 imprimir(nombre);
             }
 
-            return nombres.Count;
+            return filtrados.Count;
 
         }
 
-            static Action<string> imprimir = x => Console.WriteLine(x);
+        static Action<string> imprimir = x => Console.WriteLine(x);
         static void Main(string[] args)
         {
-            Func<string,string, int> queUsaremos;
-
-            //queUsaremos = ContarNombresSegundaConLetra;
-
-
-          //  queUsaremos  = (y,d) => nombres.Where(x=> x.Contains(y)).Count();
-
-
-
-
-            Console.WriteLine(ContarNombres("a", x => x.Contains("a")));
-            Console.WriteLine(ContarNombres("a", x => x.StartsWith("a")));
-            Console.WriteLine(ContarNombres("a", x => x.EndsWith("a")));
+            Console.WriteLine(ContarNombres(x => x.Contains("a")));
+            Console.WriteLine(ContarNombres(x => x.StartsWith("a")));
+            Console.WriteLine(ContarNombres(x => x.EndsWith("a")));
             
 
         }
